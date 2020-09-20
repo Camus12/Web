@@ -43,14 +43,14 @@ def Convertir_BGR(img):
     return img
 
 def gen():
-    #cap = cv2.VideoCapture('http://admin:tello123@192.168.1.5:8080/video')
+    cap = cv2.VideoCapture('http://admin:tello123@192.168.1.5:8080/video')
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = Darknet("config/yolov3-custom8C.cfg", img_size=416).to(device)
     model.load_state_dict(torch.load("checkpoints/yolov3_ckpt_849.pth"))
     model.eval()  
     classes = load_classes("custom/classes.names")
     Tensor = torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor
-    cap= cv2.VideoCapture(0)
+    #cap= cv2.VideoCapture(0)
     colors = np.random.randint(0, 255, size=(len(classes), 3), dtype="uint8")
     a=[]
     while cap:
