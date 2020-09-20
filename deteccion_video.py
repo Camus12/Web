@@ -11,7 +11,7 @@ import torch
 from torch.autograd import Variable
 from flask import Flask, render_template, Response
 import time
-
+port = int(os.getenv('PORT', 5000))
 app = Flask(__name__)
 
 @app.route('/')
@@ -94,5 +94,5 @@ def video_feed():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=port, threaded=False)
     
